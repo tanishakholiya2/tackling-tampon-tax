@@ -52,21 +52,28 @@ class Obstacle {
         if(this.h > 55) {
             this.h = 55;
         }
+        if(this.h < 15) {
+            this.h = 15;
+        }
         console.log(this.h);
+        this.hit = false;
     }
     show() {
         c.fillStyle='gray';
         c.fillRect(this.x, 125-this.h, this.w, this.h);
-        console.log(this.h);
         c.fillStyle="white";
         c.fillText("$" + this.price, this.x-10, 140);
     }
     update() {
-        if(this.x < p.x + p.w && this.x + this.w > p.x && this.y < p.y  + p.h && this.y + this.h > p.y && !gameOver) {
+        if(this.x < p.x + p.w && this.x + this.w > p.x && this.y < p.y  + p.h && this.y + this.h > p.y && !gameOver && !this.hit) {
+  //          console.log("og price " + p.price);
        //     console.log('hit');
             p.price -= this.price;
+            this.hit = true;
+    //        console.log("price left " + p.price);
             c.fillStyle="black";
             c.fillText("-" + this.price, 100, 10)
+            if(!gameOver) {console.log(this.price)};
       //      console.log(p.price);
         }
     }
@@ -154,13 +161,21 @@ document.onkeydown = keyDown;
 document.onkeyup = keyUp;
 
 function changeSpeed() {
-   // p.xSpeed -= 0.1;
+   //p.xSpeed -= 0.1;
 }
 setInterval(changeSpeed, 1000);
 
 function monthIncrease() {
     if(!gameOver){
         p.months++;
+        priceIncrease = Math.round(p.ogPrice/10);
+        p.price += priceIncrease;
+        text('Monthly increase, +' + priceIncrease);
     }
 }
 setInterval(monthIncrease, 6000);
+
+function text(text) {
+    c.fillStyle='black';
+    c.fillText(text, 100, 10);
+}

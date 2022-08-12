@@ -52,6 +52,32 @@
             <div class = "div">
                 <p id="loc" style="color:#2C3A2C;font-size:40px; text-align: center; align-items:center;"></p>
             </div>
+            <div style="display:grid; grid-template-columns: repeat(2, 1fr); row-gap: 2;">
+            <div class="mapouter" style="align-items:center">
+                <div class="gmap_canvas">
+                    <iframe width="600" height="500" id="map" src="" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
+                    </iframe>
+                    <a href="https://123movies-to.org"></a><br><style>.mapouter{position:relative;text-align:right;height:500px;width:600px;}</style><a href="https://www.embedgooglemap.net">website google maps</a>
+                    <style>.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;}</style>
+                </div>
+            </div>
+            <div class="mapouter" style="align-items:center">
+                <div class="gmap_canvas">
+                    <iframe width="600" height="500" id="map2" src="" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
+                    </iframe>
+                    <a href="https://123movies-to.org"></a><br><style>.mapouter{position:relative;text-align:right;height:500px;width:600px;}</style><a href="https://www.embedgooglemap.net">website google maps</a>
+                    <style>.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;}</style>
+                </div>
+            </div>
+            <div class="mapouter" style="align-items:center;">
+                <div class="gmap_canvas">
+                    <iframe width="600" height="500" id="map3" src="" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" style="margin-top: 100">
+                    </iframe>
+                    <a href="https://123movies-to.org" style="margin-top:10"></a><br><style>.mapouter{position:relative;text-align:right;height:500px;width:600px;margin-top:10;}</style><a href="https://www.embedgooglemap.net">website google maps</a>
+                    <style>.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;margin-top:10}</style>
+                </div>
+            </div>
+            </div>
         </body>
     </head>
 </html>
@@ -68,12 +94,39 @@
         michiganLocs[0] = "Holt Public Library: 2078 Aurelius Rd, Holt, MI";
         michiganLocs[1] = "Resistance Bookstore: 515 W Ionia St Unit 2, Lansing, MI";
         michiganLocs[2] = "Willow Tree Family Center: 1141 N Pine St, Lansing, MI";
-        michiganLocs[3] = "Seams: 325A Grove St, East Lansing, MI";
-        michiganLocs[4] = "Storage Sense: 708 # Ceaser Chavez, Lansing, MI";
-        michiganLocs[5] = "Women's Center of Greater Lansing: 1712 E Michigan Ave, Lansing, MI";
+ //       michiganLocs[3] = "Seams: 325A Grove St, East Lansing, MI";
+ //       michiganLocs[4] = "Storage Sense: 708 # Ceaser Chavez, Lansing, MI";
+ //       michiganLocs[5] = "Women's Center of Greater Lansing: 1712 E Michigan Ave, Lansing, MI";
+
+        const googleMapLocations = [];
+        googleMapLocations[0] = "https://maps.google.com/maps?q=1381%20South%20First%20Street%20San%20Jose,%20CA%2095110&t=&z=13&ie=UTF8&iwloc=&output=embed";
+        googleMapLocations[1] = "https://maps.google.com/maps?q=Bay%20Area%20Rescue%20Mission:%202114%20Macdonald%20Avenue%20Richmond,%20CA%2094801&t=&z=13&ie=UTF8&iwloc=&output=embed";
+        googleMapLocations[2] = "https://maps.google.com/maps?q=2078%20Aurelius%20Rd,%20Holt,%20MI&t=&z=13&ie=UTF8&iwloc=&output=embed";
+        googleMapLocations[3] = "https://maps.google.com/maps?q=515%20W%20Ionia%20St%20Unit%202,%20Lansing,%20MI&t=&z=13&ie=UTF8&iwloc=&output=embed";
+        googleMapLocations[4] = "https://maps.google.com/maps?q=1141%20N%20Pine%20St,%20Lansing,%20MI&t=&z=13&ie=UTF8&iwloc=&output=embed";
+ //       googleMapLocations[5] = "";
+ //       googleMapLocations[6];
+ //       googleMapLocations[7];
+ //       googleMapLocations[8];
+
         
-        if(zip > 94000 && zip < 96000) document.getElementById("loc").innerHTML = bayAreaLocs[0] + "<br> <br>" + bayAreaLocs[1];
-        else if(zip > 48860 && zip < 49000) document.getElementById("loc").innerHTML = michiganLocs[0] + "<br><br>" + michiganLocs[1] + "<br><br>" + michiganLocs[2] + "<br><br>" + michiganLocs[3] + "<br><br>" + michiganLocs[4] + "<br><br>" + michiganLocs[5];
-        else document.getElementById("loc").innerHTML = "We currently do not have nearby locations to donate, but you can still support this cause by spreading the word! We are updating our website to find closer locations for your zip code, so check back in the future!";
+        if(zip > 94000 && zip < 96000) {
+            document.getElementById("loc").innerHTML = bayAreaLocs[0] + "<br> <br>" + bayAreaLocs[1];
+            document.getElementById("map").src = googleMapLocations[0];
+            document.getElementById("map2").src = googleMapLocations[1];
+            document.getElementById("map3").src = "";
+        }
+        else if(zip > 48500 && zip < 50000) {
+            document.getElementById("loc").innerHTML = michiganLocs[0] + "<br><br>" + michiganLocs[1] + "<br><br>" + michiganLocs[2];
+            document.getElementById("map").src = googleMapLocations[0];
+            document.getElementById("map2").src = googleMapLocations[1];
+            document.getElementById("map3").src = googleMapLocations[2];
+        }
+        else {
+            document.getElementById("loc").innerHTML = "We currently do not have nearby locations to donate, but you can still support this cause by spreading the word! We are updating our website to find closer locations for your zip code, so check back in the future!";
+            document.getElementById("map").src = "";
+            document.getElementById("map2").src = "";
+            document.getElementById("map3").src = "";
+        }
     }
 </script>
