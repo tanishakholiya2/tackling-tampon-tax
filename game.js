@@ -43,26 +43,31 @@ class Player {
 }
 
 class Obstacle {
-    constructor(x, y, h) {
+    constructor(x, y) {
         this.x = x;
         this.y = y;
         this.w = 2;
-        this.h = Math.round(Math.random()*300+10);
-        this.price = Math.ceil((this.h+1)/10)*10;
+        this.price = Math.ceil((Math.round(Math.random()*300+10)+1/10)*10);
+        this.h = this.price/50;
+        if(this.h > 55) {
+            this.h = 55;
+        }
+        console.log(this.h);
     }
     show() {
         c.fillStyle='gray';
-        c.fillRect(this.x, 85, this.w, 40);
+        c.fillRect(this.x, 125-this.h, this.w, this.h);
+        console.log(this.h);
         c.fillStyle="white";
-        c.fillText("$" + this.price, this.x-10, this.y+35);
+        c.fillText("$" + this.price, this.x-10, 140);
     }
     update() {
         if(this.x < p.x + p.w && this.x + this.w > p.x && this.y < p.y  + p.h && this.y + this.h > p.y && !gameOver) {
-            console.log('hit');
+       //     console.log('hit');
             p.price -= this.price;
             c.fillStyle="black";
             c.fillText("-" + this.price, 100, 10)
-            console.log(p.price);
+      //      console.log(p.price);
         }
     }
 }
@@ -72,7 +77,6 @@ var gravity = 0.1;
 var canJump = true;
 var obstacles = [];
 var obstacleX = 200;
-var obstacleHeight = 30;
 var gameOver;
 var run = true;
 window.onload = function() {
@@ -92,10 +96,9 @@ function runGame() {
     p.show();
 
     for(let i = 0; i < 500; i++) {
-        var r = new Obstacle(obstacleX, 100, obstacleHeight);
+        var r = new Obstacle(obstacleX, 100);
         obstacles.push(r);
         obstacleX += 200;
-        obstacleHeight += 10;
     }
 }
 
@@ -111,6 +114,7 @@ function update() {
     p.update();
     c.fillStyle = "green";
     c.fillText("$" + p.price, 5, 10);
+    c.fillText("Months: " + p.months, 5, 20);
     for(let i = 0; i < 500; i++) {
         obstacles[i].show();
         obstacles[i].x += p.xSpeed;
