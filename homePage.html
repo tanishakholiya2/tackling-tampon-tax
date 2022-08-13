@@ -21,18 +21,58 @@
                 scroll-behavior: smooth;
             }
         </style>
+        <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-auth-compat.js"></script>
     </head>
     <body style = "background-image: url('protestTTTbg.png');">
+        <script>
+            const firebaseConfig = {
+            apiKey: "AIzaSyD9A24ZeypiKY7fGqaA0sMCO9sGEhJZYro",
+            authDomain: "ttt3-6fa02.firebaseapp.com",
+            projectId: "ttt3-6fa02",
+            storageBucket: "ttt3-6fa02.appspot.com",
+            messagingSenderId: "763195936058",
+            appId: "1:763195936058:web:5f17a66d44891caff8d403",
+            measurementId: "G-R56VCP0D38"
+            };
+        
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+            const auth = firebase.auth();
+            firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                // User is signed in.
+                document.getElementById('user').innerHTML = user.email;
+                document.getElementById('sign-out').style.visibility = 'visible';
+                let signOutButton = document.getElementById("sign-out");
+                signOutButton.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    auth.signOut();
+                    alert("Signed out");
+                })
+            } else {
+                // User is signed out.
+                document.getElementById("signup").innerHTML = 'SIGN IN';
+                document.getElementById('sign-out').style.visibility = 'hidden';
+                document.getElementById('user').innerHTML = '';
+            }
+            }, function(error) {
+            console.log(error);
+            });
+        </script>
         <div style="background:transparent; height:60px;top:50%;margin-left: 10px; cursor: pointer">
             <a href="homePage.html" class="w3-bar-item w3-btn w3-ripple"><img src="tttLogo.png" alt="ttt logo" margin-top= "-5px" height="40px"></a>
             <a href="donate.html"; class="w3-bar-item w3-btn w3-ripple"; style = "color:  #2C3A2C; margin-top:10px;" >DONATE</a>
             <a href="pickUp.html"; class="w3-bar-item w3-btn w3-ripple"; style = "color:  #2C3A2C; margin-top:10px;" >PICK UP</a>
             <a href="taxInfo.html"; class="w3-bar-item w3-btn w3-ripple"; style = "color: #2C3A2C; margin-top:10px;" >WHAT IS THE TAX</a>
             <a href="gamestartingpage.html"; class="w3-bar-item w3-btn w3-ripple"; style = "color: #2C3A2C; margin-top:10px;" >TTT GAME</a>
+            <a id="signup" href="login.html"; class="w3-bar-item w3-btn w3-ripple"; style = "color: #2C3A2C; margin-top:10px;"> </a>
+            <button type="submit" class="btn btn-primary btn-block" id="sign-out"> SIGN OUT</button>
+            <p id="user"> </p>
         </div>
         <header style="text-align: center; background-image: url('protestTTTbg.png');">
-            <span style="color:#9E656D;font-size:150px"><b>Tackling Tampon Tax</b></span> <br><br><br>
-            <span style = "color:#2C3A2C;font-size: 40px">educating and helping youth combat menstruation based inequalities</span> <br><br>
+            <span style="color:#9E656D;font-size:120px"><b>Tackling Tampon Tax</b></span> <br><br><br>
+            <span style = "color:#2C3A2C;font-size: 40px">Educating and helping youth combat menstruation based inequalities</span> <br><br>
         </header>
         
     </body>
