@@ -19,7 +19,7 @@ class Player {
     show() {
        // console.log('showing!!!')
         c.beginPath();
-        c.fillStyle = 'red';
+        c.fillStyle = '#9E656D';
         c.fillRect(this.x, this.y, this.w, this.h);
         c.stroke();
     }
@@ -111,15 +111,15 @@ function runGame() {
 
 function update() {
     canvas.width=canvas.width;
-    c.fillStyle = "green"
+    c.fillStyle = "#2C3A2C"
     c.beginPath();
-    c.fillStyle = "green"
+    c.fillStyle = "#2C3A2C"
     c.fillRect(0, 125, screen.width, 40);
     c.stroke();
     //player
     p.show();
     p.update();
-    c.fillStyle = "green";
+    c.fillStyle = "#2C3A2C";
     c.fillText("$" + p.price, 5, 10);
     c.fillText("Months: " + p.months, 5, 20);
     for(let i = 0; i < 500; i++) {

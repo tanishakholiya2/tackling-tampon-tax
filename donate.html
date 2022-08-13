@@ -36,11 +36,12 @@
 
         </style>
         <body style="background-image: url('taxInfoBg.png');">
-            <div style="background-image: url('protestTTTbg.png'); height:65px;top:50%;margin-left: 10px; cursor: pointer">
+            <div style="background:transparent; height:60px;top:50%;margin-left: 10px; cursor: pointer">
                 <a href="homePage.html" class="w3-bar-item w3-btn w3-ripple"><img src="tttLogo.png" alt="ttt logo" margin-top= "-5px" height="40px"></a>
-                <a href="donate.html"; class="w3-bar-item w3-btn w3-ripple"; style = "color:  #2C3A2C; margin-top:10px;" >DONATE</a>
-                <a href="pickUp.html"; class="w3-bar-item w3-btn w3-ripple"; style = "color:  #2C3A2C; margin-top:10px;" >PICK UP</a>
+                <a href="donate.html"; class="w3-bar-item w3-btn w3-ripple"; style = "color:  #2C3A2C; margin-top:10px;" >DONATE/PICK UP</a>
+                <a href="pickUp.html"; class="w3-bar-item w3-btn w3-ripple"; style = "color:  #2C3A2C; margin-top:10px;" >LOCATIONS</a>
                 <a href="taxInfo.html"; class="w3-bar-item w3-btn w3-ripple"; style = "color: #2C3A2C; margin-top:10px;" >WHAT IS THE TAX</a>
+                <a href="info.html"; class="w3-bar-item w3-btn w3-ripple"; style = "color: #2C3A2C; margin-top:10px;" >PERIOD FAX</a>
                 <a href="gamestartingpage.html"; class="w3-bar-item w3-btn w3-ripple"; style = "color: #2C3A2C; margin-top:10px;" >TTT GAME</a>
             </div>
             <header style="text-align: center; background-image: url('protestTTTbg.png');">
@@ -52,29 +53,52 @@
             <div class = "div">
                 <p id="loc" style="color:#2C3A2C;font-size:40px; text-align: center; align-items:center;"></p>
             </div>
-            <div style="display:grid; grid-template-columns: repeat(2, 1fr); row-gap: 2;">
+            <div style="display:grid; grid-template-columns: repeat(2, 1fr); row-gap: 2; column-gap:2;">
             <div class="mapouter" style="align-items:center">
                 <div class="gmap_canvas">
-                    <iframe width="600" height="500" id="map" src="" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
-                    </iframe>
+                    <iframe width="600" height="500" id="map" src="" frameborder="0" scrolling="no" marginheight="50px" marginwidth="50px"></iframe>
                     <a href="https://123movies-to.org"></a><br><style>.mapouter{position:relative;text-align:right;height:500px;width:600px;}</style><a href="https://www.embedgooglemap.net">website google maps</a>
-                    <style>.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;}</style>
+                    <style>.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;margin-bottom:50px}</style>
                 </div>
             </div>
             <div class="mapouter" style="align-items:center">
                 <div class="gmap_canvas">
-                    <iframe width="600" height="500" id="map2" src="" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
+                    <iframe width="600" height="500" id="map2" src="" frameborder="0" scrolling="no" marginheight="50px" marginwidth="50px">
                     </iframe>
                     <a href="https://123movies-to.org"></a><br><style>.mapouter{position:relative;text-align:right;height:500px;width:600px;}</style><a href="https://www.embedgooglemap.net">website google maps</a>
-                    <style>.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;}</style>
+                    <style>.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;margin-top:50px}</style>
                 </div>
             </div>
             <div class="mapouter" style="align-items:center;">
                 <div class="gmap_canvas">
-                    <iframe width="600" height="500" id="map3" src="" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" style="margin-top: 100">
+                    <iframe width="600" height="500" id="map3" src="" frameborder="0" scrolling="no" marginheight="50px" marginwidth="50px">
                     </iframe>
                     <a href="https://123movies-to.org" style="margin-top:10"></a><br><style>.mapouter{position:relative;text-align:right;height:500px;width:600px;margin-top:10;}</style><a href="https://www.embedgooglemap.net">website google maps</a>
-                    <style>.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;margin-top:10}</style>
+                    <style>.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;margin-top:50px}</style>
+                </div>
+            </div>
+            <div class="mapouter" style="align-items:center;">
+                <div class="gmap_canvas">
+                    <iframe width="600" height="500" id="map4" src="" frameborder="0" scrolling="no" marginheight="50px" marginwidth="50px"">
+                    </iframe>
+                    <a href="https://123movies-to.org" style="margin-top:10"></a><br><style>.mapouter{position:relative;text-align:right;height:500px;width:600px;margin-top:10;}</style><a href="https://www.embedgooglemap.net">website google maps</a>
+                    <style>.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;margin-top:50px}</style>
+                </div>
+            </div>
+            <div class="mapouter" style="align-items:center;">
+                <div class="gmap_canvas">
+                    <iframe width="600" height="500" id="map5" src="" frameborder="0" scrolling="no" marginheight="50px" marginwidth="50px">
+                    </iframe>
+                    <a href="https://123movies-to.org" style="margin-top:10"></a><br><style>.mapouter{position:relative;text-align:right;height:500px;width:600px;margin-top:10;}</style><a href="https://www.embedgooglemap.net">website google maps</a>
+                    <style>.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;margin-top:50px}</style>
+                </div>
+            </div>
+            <div class="mapouter" style="align-items:center;">
+                <div class="gmap_canvas">
+                    <iframe width="600" height="500" id="map6" src="" frameborder="0" scrolling="no" marginheight="50px" marginwidth="50px">
+                    </iframe>
+                    <a href="https://123movies-to.org" style="margin-top:10"></a><br><style>.mapouter{position:relative;text-align:right;height:500px;width:600px;margin-top:10;}</style><a href="https://www.embedgooglemap.net">website google maps</a>
+                    <style>.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;margin-top:50px}</style>
                 </div>
             </div>
             </div>
@@ -94,9 +118,9 @@
         michiganLocs[0] = "Holt Public Library: 2078 Aurelius Rd, Holt, MI";
         michiganLocs[1] = "Resistance Bookstore: 515 W Ionia St Unit 2, Lansing, MI";
         michiganLocs[2] = "Willow Tree Family Center: 1141 N Pine St, Lansing, MI";
- //       michiganLocs[3] = "Seams: 325A Grove St, East Lansing, MI";
- //       michiganLocs[4] = "Storage Sense: 708 # Ceaser Chavez, Lansing, MI";
- //       michiganLocs[5] = "Women's Center of Greater Lansing: 1712 E Michigan Ave, Lansing, MI";
+        michiganLocs[3] = "Seams: 325A Grove St, East Lansing, MI";
+        michiganLocs[4] = "Storage Sense: 708 # Ceaser Chavez, Lansing, MI";
+        michiganLocs[5] = "Women's Center of Greater Lansing: 1712 E Michigan Ave, Lansing, MI";
 
         const googleMapLocations = [];
         googleMapLocations[0] = "https://maps.google.com/maps?q=1381%20South%20First%20Street%20San%20Jose,%20CA%2095110&t=&z=13&ie=UTF8&iwloc=&output=embed";
@@ -104,29 +128,36 @@
         googleMapLocations[2] = "https://maps.google.com/maps?q=2078%20Aurelius%20Rd,%20Holt,%20MI&t=&z=13&ie=UTF8&iwloc=&output=embed";
         googleMapLocations[3] = "https://maps.google.com/maps?q=515%20W%20Ionia%20St%20Unit%202,%20Lansing,%20MI&t=&z=13&ie=UTF8&iwloc=&output=embed";
         googleMapLocations[4] = "https://maps.google.com/maps?q=1141%20N%20Pine%20St,%20Lansing,%20MI&t=&z=13&ie=UTF8&iwloc=&output=embed";
- //       googleMapLocations[5] = "";
- //       googleMapLocations[6];
- //       googleMapLocations[7];
- //       googleMapLocations[8];
-
+        googleMapLocations[5] = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2930.4505192206534!2d-84.48681517104798!3d42.73651961251744!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8822e99fddb976d1%3A0x9935f004bc268f59!2sSeams%20Fabric!5e0!3m2!1sen!2sus!4v1660346369716!5m2!1sen!2sus";
+        googleMapLocations[6] = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2929.9555253830595!2d-84.54427938459877!3d42.74699317916281!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8822ea133ef11611%3A0xa907fe99ca0aad47!2sStorage%20Sense!5e0!3m2!1sen!2sus!4v1660346446014!5m2!1sen!2sus";
+        googleMapLocations[7] = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2930.5966952869844!2d-84.52758668459919!3d42.73342627916363!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8822c1d7a44b1407%3A0x6ae103834f18aa8b!2sWomen%E2%80%99s%20Center%20of%20Greater%20Lansing!5e0!3m2!1sen!2sus!4v1660346479242!5m2!1sen!2sus";
         
         if(zip > 94000 && zip < 96000) {
             document.getElementById("loc").innerHTML = bayAreaLocs[0] + "<br> <br>" + bayAreaLocs[1];
             document.getElementById("map").src = googleMapLocations[0];
             document.getElementById("map2").src = googleMapLocations[1];
             document.getElementById("map3").src = "";
+            document.getElementById("map4").src = "";
+            document.getElementById("map5").src = "";
+            document.getElementById("map6").src = "";
         }
         else if(zip > 48500 && zip < 50000) {
-            document.getElementById("loc").innerHTML = michiganLocs[0] + "<br><br>" + michiganLocs[1] + "<br><br>" + michiganLocs[2];
-            document.getElementById("map").src = googleMapLocations[0];
-            document.getElementById("map2").src = googleMapLocations[1];
-            document.getElementById("map3").src = googleMapLocations[2];
+            document.getElementById("loc").innerHTML = michiganLocs[0] + "<br><br>" + michiganLocs[1] + "<br><br>" + michiganLocs[2] + "<br><br>" + michiganLocs[3] + "<br><br>" + michiganLocs[4] + "<br><br>" + michiganLocs[5];
+            document.getElementById("map").src = googleMapLocations[2];
+            document.getElementById("map2").src = googleMapLocations[3];
+            document.getElementById("map3").src = googleMapLocations[4];
+            document.getElementById("map4").src = googleMapLocations[5];
+            document.getElementById("map5").src = googleMapLocations[6];
+            document.getElementById("map6").src = googleMapLocations[7];
         }
         else {
             document.getElementById("loc").innerHTML = "We currently do not have nearby locations to donate, but you can still support this cause by spreading the word! We are updating our website to find closer locations for your zip code, so check back in the future!";
             document.getElementById("map").src = "";
             document.getElementById("map2").src = "";
             document.getElementById("map3").src = "";
+            document.getElementById("map4").src = "";
+            document.getElementById("map5").src = "";
+            document.getElementById("map6").src = "";
         }
     }
 </script>
