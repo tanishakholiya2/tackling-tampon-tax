@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TTT</title>
+        <link href='https://fonts.googleapis.com/css?family=Ramabhadra' rel='stylesheet'>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
+        <script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>    
+        <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; minimum-scale=1.0; user-scalable=no; target-densityDpi=device-dpi"/>
+        <style> 
+
+            body, html {
+                height: 100%;
+                font-family: 'Ramabhadra';
+                background-color: #C7BAB9;
+                background-image: "protest.jpeg"
+            }
+
+            html {
+                scroll-behavior: smooth;
+            }
+
+            .text-box{
+                background-color: #2C3A2C;
+                color:#C7BAB9;
+                text-align: center;
+                font-size:50px;
+                margin-top: 20px;
+            }
+
+            * {box-sizing: border-box;}
+ul {list-style-type: none;}
+
+.month {
+  padding: 70px 25px;
+  width: 100%;
+  background: #9E656D;
+  text-align: center;
+}
+
+.month ul {
+  margin: 0;
+  padding: 0;
+}
+
+.month ul li {
+  color: white;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+.month .prev {
+  float: left;
+  padding-top: 10px;
+}
+
+.month .next {
+  float: right;
+  padding-top: 10px;
+}
+
+.weekdays {
+  margin: 0;
+  padding: 10px 0;
+  background-color: #ddd;
+}
+
+.weekdays li {
+  display: inline-block;
+  width: 13.6%;
+  color: #666;
+  text-align: center;
+}
+
+.days {
+  padding: 10px 0;
+  background: #eee;
+  margin: 0;
+}
+
+.days span {
+  list-style-type: none;
+  display: inline-block;
+  width: 13.6%;
+  text-align: center;
+  margin-bottom: 5px;
+  font-size:12px;
+  color: #2C3A2C;
+}
+
+.days span .active {
+  padding: 5px;
+  background: #9E656D;
+  color: white !important
+}
+
+/* Add media queries for smaller screens */
+@media screen and (max-width:720px) {
+  .weekdays li, .days span {width: 13.1%;}
+}
+
+@media screen and (max-width: 420px) {
+  .weekdays li, .days span {width: 12.5%;}
+  .days span .active {padding: 2px;}
+}
+
+@media screen and (max-width: 290px) {
+  .weekdays li, .days span {width: 12.2%;}
+}
+
+</style>
+    </head>
+    <body style = "background-image: url('protestTTTbg.png');">
+        <div style="background:transparent; height:60px;top:50%;margin-left: 10px; cursor: pointer">
+            <a href="homePage.html" class="w3-bar-item w3-btn w3-ripple"><img src="tttLogo.png" alt="ttt logo" margin-top= "-5px" height="40px"></a>
+            <a href="donate.html"; class="w3-bar-item w3-btn w3-ripple"; style = "color:  #2C3A2C; margin-top:10px;" >DONATE/PICK UP</a>
+            <a href="pickUp.html"; class="w3-bar-item w3-btn w3-ripple"; style = "color:  #2C3A2C; margin-top:10px;" >LOCATIONS</a>
+            <a href="taxInfo.html"; class="w3-bar-item w3-btn w3-ripple"; style = "color: #2C3A2C; margin-top:10px;" >WHAT IS THE TAX</a>
+            <a href="info.html"; class="w3-bar-item w3-btn w3-ripple"; style = "color: #2C3A2C; margin-top:10px;" >PERIOD FAX</a>
+            <a href="tracker.html"; class="w3-bar-item w3-btn w3-ripple"; style = "color: #2C3A2C; margin-top:10px;" >PERIOD TRACKER</a>
+            <a href="gamestartingpage.html"; class="w3-bar-item w3-btn w3-ripple"; style = "color: #2C3A2C; margin-top:10px;" >TTT GAME</a>
+        </div>
+        <header style="text-align: center; background-image: url('protestTTTbg.png');">
+            <span style="color:#9E656D;font-size:150px"><b>Period Tracker</b></span> <br><br><br>
+            <span style = "color:#2C3A2C;font-size: 50px">log in to track your menstrual cycle</span> <br><br>
+            <a><img src="scroll.gif" id="desc" alt="Down arrow" width="600px"></a>     
+        </header>
+
+        <header style = " background-image: url('taxInfoBg.png');">
+            <div class="month">      
+                <ul>
+                  <button class="prev" onclick = "prev()" style = "background-color:white; color: #9E656D">&#10094;</button>
+                  <button class="next" onclick= "next()" style = "background-color:white; color: #9E656D">&#10095;</button>
+                  <li>
+                    <span style="font-size:22px" id="currMonth">August</span><br>
+                    <span style="font-size:18px">2022</span> <br> <br>
+                    <span style="font-size:13px" id = "text">Enter the date and month of your last period in the form: month, day</span> <br><br>
+                    <input type="text" id="startPeriodDate" name="startDate" value="" style = "font-size: 13px; color: #9E656D"> <br><br>
+                    <button onclick="track()" style = "align-self: center; margin-bottom: 20px; color:#9E656D; font-size: 15px; background-color: white;">Enter!</button>
+                </li>
+                </ul>
+              </div>
+              
+              <ul class="weekdays">
+                <li id = "d1">Mo</li>
+                <li id = "d2">Tu</li>
+                <li id = "d3">We</li>
+                <li id = "d4">Th</li>
+                <li id = "d5">Fr</li>
+                <li id = "d6">Sa</li>
+                <li id = "d7">Su</li>
+              </ul>
+              
+              <ul class="days">  
+                <span id = 1>1</span>
+                <span id = 2>2</span>
+                <span id = 3>3</span>
+                <span id = 4>4</span>
+                <span id = 5>5</span>
+                <span id = 6>6</span>
+                <span id = 7>7</span>
+                <span id = 8>8</span>
+                <span id = 9>9</span>
+                <span id = 10>10</span>
+                <span id = 11>11</span>
+                <span id = 12>12</span>
+                <span id = 13>13</span>
+                <span id = 14>14</span>
+                <span id = 15>15</span>
+                <span id = 16>16</span>
+                <span id = 17>17</span>
+                <span id = 18>18</span>
+                <span id = 19>19</span>
+                <span id = 20>20</span>
+                <span id = 21>21</span>
+                <span id = 22>22</span>
+                <span id = 23>23</span>
+                <span id = 24>24</span>
+                <span id = 25>25</span>
+                <span id = 26>26</span>
+                <span id = 27>27</span>
+                <span id = 28>28</span>
+                <span id = 29>29</span>
+                <span id = 30>30</span>
+                <span id = 31>31</span>
+              </ul>         
+        </header>
+    </body>
+</html>
+
+<script>
+    function track() {
+        var script = document.getElementById("startPeriodDate").value;
+        var month = script.substring(0, script.indexOf(","));
+        let day = parseInt(script.substring(script.indexOf(" ") + 1));
+
+        let bleedLength = 5;
+
+        const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+        let periodMonthIndex = 0;
+        let currentMonthIndex = 0;
+
+        while(!(months[periodMonthIndex] === month)) periodMonthIndex++;
+
+        var currentMonth = document.getElementById("currMonth").textContent;
+
+        while(!(months[currentMonthIndex] === currentMonth)) currentMonthIndex++;
+
+        var periodMonthNum = periodMonthIndex + 1;
+
+        var currentMonthNum = currentMonthIndex + 1;
+
+        if(currentMonthNum == periodMonthNum)
+        {
+            for (let i = 0; i < bleedLength; i++) {
+                document.getElementById(parseInt(day + i)).style = "padding: 5px; background: #9E656D; color: white";
+            }
+        }
+
+        else
+        {
+            //if period started in a previous month, then add 28 days to find the starting date in this month
+            let thisMonthDay = day + 28; 
+
+            if(currentMonthNum == 4 || currentMonthNum == 6 || currentMonthNum == 9 || currentMonthNum == 11)
+            {
+                if(thisMonthDay > 30) thisMonthDay = thisMonthDay - 30;
+                
+                else
+                {
+                    let daysLeft = 30 - thisMonthDay;
+                    bleedLength = bleedLength - daysLeft; 
+                } 
+            }
+
+            else if(currentMonthNum != 2)
+            {
+                if(thisMonthDay > 31) thisMonthDay = thisMonthDay - 31;
+                else
+                {
+                    let daysLeft = 31 - thisMonthDay;
+                    bleedLength = bleedLength - daysLeft; 
+                } 
+            }
+
+            else
+            {
+                if(thisMonthDay > 28) thisMonthDay = thisMonthDay - 28;
+                else
+                {
+                    let daysLeft = 28 - thisMonthDay;
+                    bleedLength = bleedLength - daysLeft; 
+                } 
+            }
+
+            for (let i = 0; i < bleedLength; i++) {
+                document.getElementById(parseInt(thisMonthDay + i)).style = "padding: 5px; background: #9E656D; color: white";
+            }
+        }
+    }
+
+    function prev() {
+       let currMonth = document.getElementById("currMonth").textContent;
+
+       const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+      
+       let currMonthNumber = 0;
+
+       while(!(months[currMonthNumber] === currMonth)) currMonthNumber++;
+
+       let prevMonthNumber = currMonthNumber - 1;
+
+       if(prevMonthNumber < 0) prevMonthNumber = 11;
+
+       document.getElementById("currMonth").textContent = months[prevMonthNumber];
+
+       changeDates(prevMonthNumber);
+
+       if(document.getElementById("startPeriodDate").value.length != 0)
+       {
+            clear();
+            track();
+       }
+    }
+
+    function next() {
+        let currMonth = document.getElementById("currMonth").textContent;
+
+       const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+      
+       let currMonthNumber = 0;
+
+       while(!(months[currMonthNumber] === currMonth)) currMonthNumber++;
+
+       let nextMonthNum = currMonthNumber + 1;
+
+       if(nextMonthNum > 11) nextMonthNum -= 12;
+
+       document.getElementById("currMonth").textContent = months[nextMonthNum];
+
+       changeDates(nextMonthNum);
+
+       if(document.getElementById("startPeriodDate").value.length != 0)
+       {
+            clear();
+            track();
+       }
+
+    }
+
+    function changeDates(monthNum)
+    {
+        if(monthNum == 3 || monthNum == 5 || monthNum == 8 || monthNum == 10)
+        {
+            document.getElementById("29").textContent = "29";
+            document.getElementById("30").textContent = "30";
+            document.getElementById("31").textContent = "";
+        }
+
+        else if(monthNum == 0 || monthNum == 2 || monthNum == 4 || monthNum == 6 || monthNum == 7 || monthNum == 9 || monthNum == 11)
+        {
+            document.getElementById("29").textContent = "29";
+            document.getElementById("30").textContent = "30";
+            document.getElementById("31").textContent = "31";
+        }
+
+        else
+        {
+            document.getElementById("29").textContent = "";
+            document.getElementById("30").textContent = "";
+            document.getElementById("31").textContent = "";
+        }
+
+        changeDays(monthNum);
+    }
+
+    function changeDays(monthNum)
+    {
+        const january = ["Su", "Mo", "Tu","Wed","Th", "Fr","Sa"];
+        const february = ["Tu", "Wed","Th","Fr", "Sa", "Su", "Mo"];
+        const march = ["Tu", "Wed","Th","Fr", "Sa", "Su", "Mo"];
+        const april = ["Fr", "Sa", "Su", "Mo", "Tu", "Wed", "Th"];
+        const may = ["Su", "Mo", "Tu","Wed","Th", "Fr","Sa"];
+        const june = ["Wed", "Th", "Fr", "Sa", "Su", "Mo", "Tu"];
+        const july = ["Fr", "Sa", "Su", "Mo", "Tu", "Wed", "Th"];
+        const august = ["Mo", "Tu", "Wed", "Th", "Fr", "Sa", "Su"];
+        const september = ["Th", "Fr", "Sa", "Su", "Mo", "Tu", "Wed"];
+        const october = ["Sa", "Su", "Mo", "Tu","Wed","Th", "Fr"];
+        const november = ["Tu", "Wed","Th","Fr", "Sa", "Su", "Mo"];
+        const december = ["Th", "Fr", "Sa", "Su", "Mo", "Tu", "Wed"];
+
+        let arr = [];
+
+        if(monthNum == 0) arr = january;
+        else if(monthNum == 1) arr = february;
+        else if(monthNum == 2) arr = march;
+        else if(monthNum == 3) arr = april;
+        else if(monthNum == 4) arr = may;
+        else if(monthNum == 5) arr = june;
+        else if(monthNum == 6) arr = july;
+        else if(monthNum == 7) arr = august;
+        else if(monthNum == 8) arr = september;
+        else if(monthNum == 9) arr = october;
+        else if(monthNum == 10) arr = november;
+        else if(monthNum == 11) arr = december;
+
+        for(let i = 0; i < 7; i++)
+        {
+            console.log("d" + (i+1));
+            document.getElementById("d" + (i+1)).textContent = arr[i];
+        }
+    }
+
+    function clear()
+    {
+        for (let i = 1; i < 32; i++) {
+            document.getElementById(parseInt(i)).style = "";
+        }
+    }
+
+</script>
+
