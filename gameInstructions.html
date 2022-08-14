@@ -21,8 +21,11 @@
                 scroll-behavior: smooth;
             }
         </style>
+        <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-auth-compat.js"></script>
     </head>
     <body>
+        <script src="loginstuff.js"> </script>
         <div style="background:transparent; height:60px;top:50%;margin-left: 10px; cursor: pointer">
             <a href="homePage.html" class="w3-bar-item w3-btn w3-ripple"><img src="tttLogo.png" alt="ttt logo" margin-top= "-5px" height="40px"></a>
             <a href="donate.html"; class="w3-bar-item w3-btn w3-ripple"; style = "color:  #2C3A2C; margin-top:10px;" >DONATE/PICK UP</a>
@@ -30,6 +33,9 @@
             <a href="taxInfo.html"; class="w3-bar-item w3-btn w3-ripple"; style = "color: #2C3A2C; margin-top:10px;" >WHAT IS THE TAX</a>
             <a href="info.html"; class="w3-bar-item w3-btn w3-ripple"; style = "color: #2C3A2C; margin-top:10px;" >PERIOD FAX</a>
             <a href="gamestartingpage.html"; class="w3-bar-item w3-btn w3-ripple"; style = "color: #2C3A2C; margin-top:10px;" >TTT GAME</a>
+            <a id="signup" href="login.html"; class="w3-bar-item w3-btn w3-ripple"; style = "color: #2C3A2C; margin-top:10px;"> </a>
+            <button type="submit" class="btn btn-primary btn-block" id="sign-out"> SIGN OUT</button>
+            <p id="user"> </p>
         </div>
         <header style="text-align: center; background-image: url('protestTTTbg.png');">
             <span style = "color:#2C3A2C;font-size: 100px">Learn how the tampon tax affects different people</span> <br><br>
