@@ -196,75 +196,285 @@ ul {list-style-type: none;}
 
 <script>
     function track() {
-        var script = document.getElementById("startPeriodDate").value;
-        var month = script.substring(0, script.indexOf(","));
-        let day = parseInt(script.substring(script.indexOf(" ") + 1));
+        // given: the date in which the person got their period. 
+        clear();
+        
+        var periodDate = document.getElementById("startPeriodDate").value;
+        var periodMonth = periodDate.substring(0, periodDate.indexOf(","));
+        var periodDay = parseInt(periodDate.substring(periodDate.indexOf(" ") + 1));
 
-        let bleedLength = 5;
+        var currMonth = document.getElementById("currMonth").textContent;
 
         const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-        let periodMonthIndex = 0;
-        let currentMonthIndex = 0;
+        let jan = [];
+        let feb = [];
+        let mar = [];
+        let apr = [];
+        let may = [];
+        let jun = [];
+        let july = [];
+        let aug = [];
+        let sep = [];
+        let oct = [];
+        let nov = [];
+        let dec = [];
 
-        while(!(months[periodMonthIndex] === month)) periodMonthIndex++;
+        let bleedDaysPerMonth = [jan, feb, mar, apr, may, jun, july, aug, sep, oct, nov, dec];
 
-        var currentMonth = document.getElementById("currMonth").textContent;
+        var periodMonthNum = 0;
 
-        while(!(months[currentMonthIndex] === currentMonth)) currentMonthIndex++;
+        while(!(months[periodMonthNum] === periodMonth)) periodMonthNum++;
 
-        var periodMonthNum = periodMonthIndex + 1;
+        //now periodMonthNum stores the java version of the number corresponding to the month in the user's response
+        
+        let bleedLength = 5;
 
-        var currentMonthNum = currentMonthIndex + 1;
+        let ogPeriodDay = periodDay;
 
-        if(currentMonthNum == periodMonthNum)
-        {
-            for (let i = 0; i < bleedLength; i++) {
-                document.getElementById(parseInt(day + i)).style = "padding: 5px; background: #9E656D; color: white";
-            }
-        }
+        let monthsThru = 0;
 
-        else
-        {
-            //if period started in a previous month, then add 28 days to find the starting date in this month
-            let thisMonthDay = day + 28; 
+           do
+           {
+                for (let i = 0; i < bleedLength; i++) {
+                    
+                    if(periodMonthNum == 3 || periodMonthNum == 5 || periodMonthNum == 8 || periodMonthNum == 10)
+                    {
+                        if(periodDay + i <= 30)
+                        {
+                            bleedDaysPerMonth[periodMonthNum][i] = periodDay + i;
+                            console.log(periodMonthNum + ", " + (periodDay + i));
+                        }
 
-            if(currentMonthNum == 4 || currentMonthNum == 6 || currentMonthNum == 9 || currentMonthNum == 11)
-            {
-                if(thisMonthDay > 30) thisMonthDay = thisMonthDay - 30;
+                        else{
+                            periodMonthNum++;
+                            monthsThru++;
+                            periodDay = 1;
+                            bleedLength = bleedLength - i;
+                            i = 0;
+                            if(periodMonthNum > 11) i = bleedLength;
+                            else bleedDaysPerMonth[periodMonthNum][i] = periodDay + i;
+                        }
+                    }
+
+                    else if(periodMonthNum == 0 || periodMonthNum == 2 || periodMonthNum == 4 || periodMonthNum == 6 || periodMonthNum == 7 || periodMonthNum == 9 || periodMonthNum == 11)
+                    {
+                        if(periodDay + i <= 31)
+                        {
+                            bleedDaysPerMonth[periodMonthNum][i] = periodDay + i;
+                            console.log(periodMonthNum + ", " + (periodDay + i));
+                        }
+
+                        else{
+                            periodMonthNum++;
+                            monthsThru++;
+                            periodDay = 1;
+                            bleedLength = bleedLength - i;
+                            i = 0;
+                            if(periodMonthNum > 11) i = bleedLength;
+                            else bleedDaysPerMonth[periodMonthNum][i] = periodDay + i;
+                        }
+                    }
+
+                    else
+                    {
+                        if(periodDay + i <= 31)
+                        {
+                            bleedDaysPerMonth[periodMonthNum][i] = periodDay + i;
+                            console.log(periodMonthNum + ", " + (periodDay + i));
+                        }
+
+                        else{
+                            periodMonthNum++;
+                            monthsThru++;
+                            periodDay = 1;
+                            bleedLength = bleedLength - i;
+                            i = 0;
+                            if(periodMonthNum > 11) i = bleedLength;
+                            else bleedDaysPerMonth[periodMonthNum][i] = periodDay + i;
+                        }
+                    }
+                } // one cycle
+
+               bleedLength = 5;
+
+                ogPeriodDay += 28; 
+
+                if(periodMonthNum == 3 || periodMonthNum == 5 || periodMonthNum == 8 || periodMonthNum == 10)
+                {
+                    if(ogPeriodDay <= 30) 
+                    {
+                        periodMonthNum--;
+                        monthsThru--;
+                    }
+                    else{
+                        ogPeriodDay = ogPeriodDay - 30;
+                        periodDay = ogPeriodDay;
+                    }
+                }
+
                 
+                else if(periodMonthNum == 0 || periodMonthNum == 2 || periodMonthNum == 4 || periodMonthNum == 6 || periodMonthNum == 7 || periodMonthNum == 9 || periodMonthNum == 11)
+                {
+                    if(ogPeriodDay <= 31) {
+                        periodMonthNum--;
+                        monthsThru--;
+                    }
+                    else{
+                        ogPeriodDay = ogPeriodDay - 31;
+                        periodDay = ogPeriodDay;
+                    }
+                }
+
                 else
                 {
-                    let daysLeft = 30 - thisMonthDay;
-                    bleedLength = bleedLength - daysLeft; 
-                } 
-            }
+                    if(ogPeriodDay <= 28) {
+                        periodMonthNum--;
+                        monthsThru--;
+                    }
+                    else{
+                        ogPeriodDay = ogPeriodDay - 28;
+                        periodDay = ogPeriodDay;
+                    }
+                }
 
-            else if(currentMonthNum != 2)
-            {
-                if(thisMonthDay > 31) thisMonthDay = thisMonthDay - 31;
+                periodMonthNum++;
+                monthsThru++;
+           } while(periodMonthNum < 12)
+
+         
+           if(monthsThru < 12)
+           {
+                periodMonthNum = 0;
+
+                for(let i = 11 - monthsThru; i >= 0; i--)
+                {
+                    for (let j = 0; j < bleedLength; j++) {
+                    
+                    if(periodMonthNum == 3 || periodMonthNum == 5 || periodMonthNum == 8 || periodMonthNum == 10)
+                    {
+                        if(periodDay + j <= 30)
+                        {
+                            bleedDaysPerMonth[periodMonthNum][j] = periodDay + j;
+                            console.log(periodMonthNum + ", " + (periodDay + j));
+                        }
+
+                        else{
+                            periodMonthNum++;
+                            monthsThru++;
+                            periodDay = 1;
+                            bleedLength = bleedLength - j;
+                            j = 0;
+                            bleedDaysPerMonth[periodMonthNum][j] = periodDay + j;
+                        }
+                    }
+
+                    else if(periodMonthNum == 0 || periodMonthNum == 2 || periodMonthNum == 4 || periodMonthNum == 6 || periodMonthNum == 7 || periodMonthNum == 9 || periodMonthNum == 11)
+                    {
+                        if(periodDay + j <= 31)
+                        {
+                            bleedDaysPerMonth[periodMonthNum][j] = periodDay + j;
+                            console.log(periodMonthNum + ", " + (periodDay + j));
+                        }
+
+                        else{
+                            periodMonthNum++;
+                            monthsThru++;
+                            periodDay = 1;
+                            bleedLength = bleedLength - j;
+                            j = 0;
+                            bleedDaysPerMonth[periodMonthNum][j] = periodDay + j;
+                        }
+                    }
+
+                    else
+                    {
+                        if(periodDay + j <= 31)
+                        {
+                            bleedDaysPerMonth[periodMonthNum][j] = periodDay + j;
+                            console.log(periodMonthNum + ", " + (periodDay + j));
+                        }
+
+                        else{
+                            periodMonthNum++;
+                            monthsThru++;
+                            periodDay = 1;
+                            bleedLength = bleedLength - j;
+                            j = 0;
+                            bleedDaysPerMonth[periodMonthNum][j] = periodDay + j;
+                        }
+                    }
+                } // one cycle
+
+               bleedLength = 5;
+
+                ogPeriodDay += 28; 
+
+                if(periodMonthNum == 3 || periodMonthNum == 5 || periodMonthNum == 8 || periodMonthNum == 10)
+                {
+                    if(ogPeriodDay <= 30) 
+                    {
+                        periodMonthNum--;
+                        monthsThru--;
+                    }
+                    else{
+                        ogPeriodDay = ogPeriodDay - 30;
+                        periodDay = ogPeriodDay;
+                    }
+                }
+
+                
+                else if(periodMonthNum == 0 || periodMonthNum == 2 || periodMonthNum == 4 || periodMonthNum == 6 || periodMonthNum == 7 || periodMonthNum == 9 || periodMonthNum == 11)
+                {
+                    if(ogPeriodDay <= 31) {
+                        periodMonthNum--;
+                        monthsThru--;
+                    }
+                    else{
+                        ogPeriodDay = ogPeriodDay - 31;
+                        periodDay = ogPeriodDay;
+                    }
+                }
+
                 else
                 {
-                    let daysLeft = 31 - thisMonthDay;
-                    bleedLength = bleedLength - daysLeft; 
-                } 
-            }
+                    if(ogPeriodDay <= 28) {
+                        periodMonthNum--;
+                        monthsThru--;
+                    }
+                    else{
+                        ogPeriodDay = ogPeriodDay - 28;
+                        periodDay = ogPeriodDay;
+                    }
+                }
 
-            else
-            {
-                if(thisMonthDay > 28) thisMonthDay = thisMonthDay - 28;
-                else
-                {
-                    let daysLeft = 28 - thisMonthDay;
-                    bleedLength = bleedLength - daysLeft; 
-                } 
-            }
-
-            for (let i = 0; i < bleedLength; i++) {
-                document.getElementById(parseInt(thisMonthDay + i)).style = "padding: 5px; background: #9E656D; color: white";
-            }
-        }
+                    periodMonthNum++;
+                    monthsThru++;
+                }
+           }
+                
+           printDays(bleedDaysPerMonth);
+        
     }
+
+    function printDays(bleedDaysPerMonth)
+    {
+        let currMonth = document.getElementById("currMonth").textContent;
+
+        const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+      
+        let currMonthNumber = 0;
+
+        while(!(months[currMonthNumber] === currMonth)) currMonthNumber++;
+
+        //currMonthNumber now stores the current month's number in java format
+        
+        for(let i = 0; i < 5; i++)
+        {
+            document.getElementById(bleedDaysPerMonth[currMonthNumber][i]).style = "padding: 5px; background: #9E656D; color: white";
+        }
+    }    
+          
 
     function prev() {
        let currMonth = document.getElementById("currMonth").textContent;
@@ -277,17 +487,18 @@ ul {list-style-type: none;}
 
        let prevMonthNumber = currMonthNumber - 1;
 
-       if(prevMonthNumber < 0) prevMonthNumber = 11;
-
-       document.getElementById("currMonth").textContent = months[prevMonthNumber];
-
-       changeDates(prevMonthNumber);
-
-       if(document.getElementById("startPeriodDate").value.length != 0)
+       if(prevMonthNumber >= 0)
        {
-            clear();
-            track();
-       }
+            document.getElementById("currMonth").textContent = months[prevMonthNumber];
+
+            changeDates(prevMonthNumber);
+
+            if(document.getElementById("startPeriodDate").value.length != 0)
+            {
+                clear();
+                track();
+            }
+        }
     }
 
     function next() {
@@ -301,17 +512,18 @@ ul {list-style-type: none;}
 
        let nextMonthNum = currMonthNumber + 1;
 
-       if(nextMonthNum > 11) nextMonthNum -= 12;
-
-       document.getElementById("currMonth").textContent = months[nextMonthNum];
-
-       changeDates(nextMonthNum);
-
-       if(document.getElementById("startPeriodDate").value.length != 0)
+       if(nextMonthNum <= 11)
        {
-            clear();
-            track();
-       }
+            document.getElementById("currMonth").textContent = months[nextMonthNum];
+
+            changeDates(nextMonthNum);
+
+            if(document.getElementById("startPeriodDate").value.length != 0)
+            {
+                clear();
+                track();
+            }
+        }
 
     }
 
@@ -373,7 +585,6 @@ ul {list-style-type: none;}
 
         for(let i = 0; i < 7; i++)
         {
-            console.log("d" + (i+1));
             document.getElementById("d" + (i+1)).textContent = arr[i];
         }
     }
